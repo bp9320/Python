@@ -6,8 +6,11 @@ cur_player = 0
 
 players = {
     'marker': ['', ''],
-    'score': [0, 0]
+    'score': [0, 0],
+    'squares': [[],[]]
 }
+
+winning_combos = ((1,2,3), (4,5,6), (7,8,9), (1,4,7), (2,5,8), (3,6,9), (1,5,9), (3,5,7))
 
 game_is_afoot = True
 
@@ -53,7 +56,19 @@ def choose_marker():
             players['marker'][0] = 'O'
             players['marker'][1] = 'X'
             done = True
+
+def get_square(player):
+    valid = False
+    square = 0
+    while not valid:
+        square = int(input(f'Player {player + 1}: Choose an open square:\t'))
+        if square >= 1 and square <= 9:
+            valid = True
+        else:
+            print('Please choose an unoccupied square between 1 and 9 inclusive.')
+    return square
             
 
 # display_board(test_board)
-choose_marker()
+# choose_marker()
+get_square(cur_player)
